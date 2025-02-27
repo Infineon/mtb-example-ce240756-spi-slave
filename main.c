@@ -9,7 +9,7 @@
 *
 *
 *******************************************************************************
-* Copyright 2024, Cypress Semiconductor Corporation (an Infineon company) or
+* Copyright 2024-2025, Cypress Semiconductor Corporation (an Infineon company) or
 * an affiliate of Cypress Semiconductor Corporation.  All rights reserved.
 *
 * This software, including source code, documentation and related
@@ -47,6 +47,7 @@
 #include "cybsp.h"
 #include "cy_pdl.h"
 #include "cy_retarget_io.h"
+#include "mtb_hal.h"
 
 /*******************************************************************************
 * Macros
@@ -55,6 +56,11 @@
 * Global Variables
 *******************************************************************************/
 cy_stc_scb_spi_context_t context;
+
+/* For the Retarget -IO (Debug UART) usage */
+static cy_stc_scb_uart_context_t    UART_context;           /** UART context */
+static mtb_hal_uart_t               UART_hal_obj;           /** Debug UART HAL object  */
+
 /*******************************************************************************
 * Function Prototypes
 *******************************************************************************/
@@ -113,10 +119,33 @@ int main(void)
     /* User LED init failed. Stop program execution */
     handle_error(result);
 
-    /* Initialize retarget-io to use the debug UART port */
-     Cy_SCB_UART_Init(UART_HW, &UART_config, NULL);
-     Cy_SCB_UART_Enable(UART_HW);
-     cy_retarget_io_init(UART_HW);
+    /* Debug UART init */
+    result = (cy_rslt_t)Cy_SCB_UART_Init(UART_HW, &UART_config, &UART_context);
+
+    /* UART init failed. Stop program execution */
+    if (result != CY_RSLT_SUCCESS)
+    {
+        CY_ASSERT(0);
+    }
+
+    Cy_SCB_UART_Enable(UART_HW);
+
+    /* Setup the HAL UART */
+    result = mtb_hal_uart_setup(&UART_hal_obj, &UART_hal_config, &UART_context, NULL);
+
+    /* HAL UART init failed. Stop program execution */
+    if (result != CY_RSLT_SUCCESS)
+    {
+        CY_ASSERT(0);
+    }
+
+    result = cy_retarget_io_init(&UART_hal_obj);
+
+    /* HAL retarget_io init failed. Stop program execution */
+    if (result != CY_RSLT_SUCCESS)
+    {
+        CY_ASSERT(0);
+    }
 
     /* Initialize retarget-io for uart logs */
     /* \x1b[2J\x1b[;H - ANSI ESC sequence for clear screen */
