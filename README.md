@@ -6,14 +6,14 @@ This code example demonstrates the use of a SPI resource in slave mode. The SPI 
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-ce240756-spi-slave)
 
-[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDA3NTYiLCJTcGVjIE51bWJlciI6IjAwMi00MDc1NiIsIkRvYyBUaXRsZSI6IlBETDogU1BJIHNsYXZlIiwicmlkIjoia29qaS5taXp1bW90b0BpbmZpbmVvbi5jb20iLCJEb2MgdmVyc2lvbiI6IjIuMS4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IkFVVE8iLCJEb2MgRmFtaWx5IjoiQVVUTyBNQ1UifQ==)
+[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDA3NTYiLCJTcGVjIE51bWJlciI6IjAwMi00MDc1NiIsIkRvYyBUaXRsZSI6IlBETDogU1BJIHNsYXZlIiwicmlkIjoia29qaS5taXp1bW90b0BpbmZpbmVvbi5jb20iLCJEb2MgdmVyc2lvbiI6IjIuMi4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IkFVVE8iLCJEb2MgRmFtaWx5IjoiQVVUTyBNQ1UifQ==)
 
 ## Requirements
 
-- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.6 or later (tested with v3.6)
+- [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) v3.7 or later (tested with v3.7)
 - Board support package (BSP) minimum required version 3.0.0
 - Programming language: C
-- Associated parts: [TRAVEO&trade; T2G family Cluster series](https://www.infineon.com/cms/en/product/microcontroller/32-bit-traveo-t2g-arm-cortex-microcontroller/32-bit-traveo-t2g-arm-cortex-for-cluster/), [TRAVEO&trade; T2G family body high CYT4BF series](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt4bf)
+- Associated parts: [TRAVEO&trade; T2G family Cluster series](https://www.infineon.com/cms/en/product/microcontroller/32-bit-traveo-t2g-arm-cortex-microcontroller/32-bit-traveo-t2g-arm-cortex-for-cluster/), [TRAVEO&trade; T2G family body high CYT4BF series](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt4bf) and [TRAVEO&trade; T2G family body high CYT6BJ series](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt6bj)
 
 
 ## Supported toolchains (make variable 'TOOLCHAIN')
@@ -29,6 +29,7 @@ This code example demonstrates the use of a SPI resource in slave mode. The SPI 
 - [TRAVEO&trade; T2G Body high Lite Kit](https://www.infineon.com/evaluation-board/KIT-T2G-B-H-LITE) (`KIT_T2G-B-H_LITE`)
 - [TRAVEO&trade; T2G Body high Evaluation Kit](https://www.infineon.com/evaluation-board/KIT-T2G-B-H-EVK) (`KIT_T2G-B-H_EVK`)
 - [TRAVEO&trade; T2G Cluster 4M Lite Kit](https://www.infineon.com/cms/en/product/evaluation-boards/kit_t2g_c-2d-4m_lite/) (`KIT_T2G_C-2D-4M_LITE`)
+- [TRAVEO&trade; T2G Body high 16M Evaluation Kit](https://www.infineon.com/design-resources/finder-selection-tools/evaluation-board) (`KIT_T2G_B-H-16M_LITE`)
 
 ## Hardware setup
 
@@ -59,10 +60,10 @@ To verify the output, you will need two devices: one acting as the master and th
 **Table 3. SPI signals connecting jumper wires (For KIT_T2G-B-H_LITE)**
  SPI signal       | SCB pin    | Header pin
  :--------------- | :--------- | :---------------
- SCLK             | P13[2]     |   J11_4
- MOSI             | P13[1]     |   J11_6
- MISO             | P13[0]     |   J11_5
- CS               | P13[3]     |   J11_3
+ SCLK             | P13[2]     |   J7_15
+ MOSI             | P13[1]     |   J7_16
+ MISO             | P13[0]     |   J7_17
+ CS               | P13[3]     |   J7_14
 
 **Table 4. SPI signals connecting jumper wires (For KIT_T2G_C-2D-4M_LITE)**
  SPI signal       | SCB pin    | Header pin
@@ -71,6 +72,14 @@ To verify the output, you will need two devices: one acting as the master and th
  MOSI             | P9[5]      |   X802_4
  MISO             | P9[6]      |   X802_5
  CS               | P9[7]      |   X802_3
+
+**Table 5. SPI signals connecting jumper wires (For KIT_T2G_B-H-16M_LITE)**
+ SPI signal       | SCB pin    | Header pin
+ :--------------- | :--------- | :---------------
+ SCLK             | P13[2]     |   J6_15
+ MOSI             | P13[1]     |   J6_16
+ MISO             | P13[0]     |   J6_17
+ CS               | P13[3]     |   J6_14
 
 
 > **Note:** This code example provides the custom *design.modus* files under the template directory for certain BSPs that do not have aliases for the SPI pins by default (for example, CYBSP_SPI_MOSI, CYBSP_SPI_MISO, CYBSP_SPI_SCLK, CYBSP_SPI_CS). Other BSPs already have these aliases defined in the default *design.modus* file and, therefore, do not need any customization.
@@ -292,7 +301,7 @@ Resources  | Links
 -----------|----------------------------------
 Application notes  | [AN235305](https://www.infineon.com/assets/row/public/documents/10/42/infineon-an235305-getting-started-with-traveo-t2g-family-mcus-in-modustoolbox-applicationnotes-en.pdf) – Getting started with TRAVEO™ T2G family MCUs in ModusToolbox&trade;　<br> [AN225401](https://www.infineon.com/row/public/documents/10/42/infineon-an225401---how-to-use-serial-communication-block-scb-in-traveo-t2g-family-applicationnotes-en.pdf) – How to use serial communications block (SCB) in TRAVEO™ T2G family
  Code examples  | [Using ModusToolbox&trade;](https://github.com/Infineon/Code-Examples-for-ModusToolbox-Software) on GitHub
-Device documentation | [TRAVEO&trade; T2G body high family MCUs datasheets](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt4bf/#documents) <br> [TRAVEO&trade; T2G body high family MCUs architecture/registers reference manuals](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt4bf/#documents) <br>[TRAVEO&trade; T2G cluster family MCUs datasheets for CYT4DN](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs architecture/registers reference manuals for CYT4DN](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs datasheets for CYT3DL](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs architecture/registers reference manuals for CYT3DL](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents)　<br>  
+Device documentation | [TRAVEO&trade; T2G body high family MCUs datasheets](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt4bf/#documents) <br> [TRAVEO&trade; T2G body high 16M family MCUs datasheets](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body/t2g-cyt6bj/#documents) <br> [TRAVEO&trade; T2G body high family MCUs architecture/registers reference manuals](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-body#documents) <br>[TRAVEO&trade; T2G cluster family MCUs datasheets for CYT4DN](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs architecture/registers reference manuals for CYT4DN](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs datasheets for CYT3DL](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents) <br> [TRAVEO&trade; T2G cluster family MCUs architecture/registers reference manuals for CYT3DL](https://www.infineon.com/products/microcontroller/32-bit-traveo-t2g-arm-cortex/for-cluster/#documents)　<br>  
 Development kits | Select your kits from the [Evaluation board finder](https://www.infineon.com/cms/en/design-support/finder-selection-tools/product-finder/evaluation-board).
 Libraries on GitHub  | [mtb-pdl-cat1](https://github.com/Infineon/mtb-pdl-cat1) – Peripheral Driver Library (PDL) 　<br> [retarget-io](https://github.com/Infineon/retarget-io/tree/master) – Utility library to retarget STDIO messages to a UART port　
  <br /> Tools  | [ModusToolbox&trade;](https://www.infineon.com/modustoolbox) – ModusToolbox&trade; software is a collection of easy-to-use libraries and tools enabling rapid development with Infineon MCUs for applications ranging from wireless and cloud-connected systems, edge AI/ML, embedded sense and control, to wired USB connectivity using PSOC&trade; Industrial/IoT MCUs, AIROC&trade; Wi-Fi and Bluetooth&reg; connectivity devices, XMC&trade; Industrial MCUs, and EZ-USB&trade;/EZ-PD&trade; wired connectivity controllers. ModusToolbox&trade; incorporates a comprehensive set of BSPs, HAL, libraries, configuration tools, and provides support for industry-standard IDEs to fast-track your embedded application development.
@@ -320,6 +329,7 @@ Document title: *CE240756* – *PDL: SPI slave*
 | 1.0.0   | New code example      |
 | 2.0.0   | Updated to support ModusToolbox&trade; software v3.4      |
 | 2.1.0   | Added support for KIT_T2G-B-H_EVK, KIT_T2G-B-H_LITE and KIT_T2G_C-2D-4M_LITE, and updated to support ModusToolbox&trade; v3.6. |
+| 2.2.0   | Added support for KIT_T2G_B-H-16M_LITE, and updated to support ModusToolbox&trade; v3.7. |
 <br>
 
 All referenced product or service names and trademarks are the property of their respective owners.
