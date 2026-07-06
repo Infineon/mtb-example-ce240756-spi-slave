@@ -6,7 +6,7 @@ This code example demonstrates the use of a SPI resource in slave mode. The SPI 
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-ce240756-spi-slave)
 
-[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDA3NTYiLCJTcGVjIE51bWJlciI6IjAwMi00MDc1NiIsIkRvYyBUaXRsZSI6IlBETDogU1BJIHNsYXZlIiwicmlkIjoia29qaS5taXp1bW90b0BpbmZpbmVvbi5jb20iLCJEb2MgdmVyc2lvbiI6IjIuMi4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IkFVVE8iLCJEb2MgRmFtaWx5IjoiQVVUTyBNQ1UifQ==)
+[Provide feedback on this code example.](https://yourvoice.infineon.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyNDA3NTYiLCJTcGVjIE51bWJlciI6IjAwMi00MDc1NiIsIkRvYyBUaXRsZSI6IlBETDogU1BJIHNsYXZlIiwicmlkIjoia29qaS5taXp1bW90b0BpbmZpbmVvbi5jb20iLCJEb2MgdmVyc2lvbiI6IjIuMy4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IkFVVE8iLCJEb2MgRmFtaWx5IjoiQVVUTyBNQ1UifQ==)
 
 ## Requirements
 
@@ -330,6 +330,8 @@ Document title: *CE240756* – *PDL: SPI slave*
 | 2.0.0   | Updated to support ModusToolbox&trade; software v3.4      |
 | 2.1.0   | Added support for KIT_T2G-B-H_EVK, KIT_T2G-B-H_LITE and KIT_T2G_C-2D-4M_LITE, and updated to support ModusToolbox&trade; v3.6. |
 | 2.2.0   | Added support for KIT_T2G_B-H-16M_LITE, and updated to support ModusToolbox&trade; v3.7. |
+  2.3.0   | Updated design.modus of the KIT_T2G_B-H-16M_LITE and KIT_T2G_C-2D-4M_LITE for addressing CLK warning      |
+  
 <br>
 
 All referenced product or service names and trademarks are the property of their respective owners.
